@@ -1,3 +1,8 @@
+/*
+ * File: 102-python.c
+ * Auth: Brennan D Baraban
+ */
+
 #include "Python.h"
 
 /**
@@ -25,3 +30,4 @@ void print_python_string(PyObject *p)
 		printf("  type: compact unicode object\n");
 	printf("  length: %ld\n", length);
 	printf("  value: %ls\n", PyUnicode_AsWideCharString(p, &length));
+}
