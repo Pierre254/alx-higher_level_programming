@@ -1,20 +1,12 @@
 #!/usr/bin/node
-const fs = require('fs');
-const args = process.argv.slice(2);
 
-console.log(args);
+const fs = require('fs').promises;
+const { argv } = require('process');
 
-function concat (file1, appendFile) {
-  fs.readFile(appendFile, (err, data) => {
-    if (err) throw err;
+fs.readFile(argv[2], 'utf8')
+  .then(data => fs.writeFile(argv[4], data, 'utf8'))
+  .catch(err => console.error(err));
 
-    fs.appendFile(file1, data, err => {
-      if (err) throw err;
-    });
-  });
-}
-const file = args[2];
-let appendFile1 = args[0];
-concat(file, appendFile1);
-appendFile1 = args[1];
-concat(file, appendFile1);
+fs.readFile(argv[3], 'utf8')
+  .then(data => fs.writeFile(argv[4], data, { flag: 'a' }, 'utf8'))
+  .catch(err => console.error(err));
